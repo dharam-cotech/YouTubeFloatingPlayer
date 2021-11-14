@@ -37,10 +37,10 @@ extension YTFViewController {
     
     //MARK: Player Controls Animations
     
-    func showPlayerControls() {
+    @objc func showPlayerControls() {
         
         if (!isMinimized) {
-            UIView.animate(withDuration: 0.6, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
                 self.backPlayerControlsView.alpha = 0.55
                 self.playerControlsView.alpha = 1.0
                 self.minimizeButton.alpha = 1.0
@@ -50,14 +50,14 @@ extension YTFViewController {
         }
     }
     
-    public func hidePlayerControls(dontAnimate: Bool) {
+    @objc public func hidePlayerControls(dontAnimate: Bool) {
         
         if (dontAnimate) {
             self.backPlayerControlsView.alpha = 0.0
             self.playerControlsView.alpha = 0.0
         } else {
             if (isPlaying) {
-                UIView.animate(withDuration: 0.6, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                UIView.animate(withDuration: 0.6, delay: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
                     self.backPlayerControlsView.alpha = 0.0
                     self.playerControlsView.alpha = 0.0
                     self.minimizeButton.alpha = 0.0
@@ -121,7 +121,7 @@ extension YTFViewController {
         
         let playerCompletion: (Bool) -> () = { finished in
             self.isFullscreen = false
-            self.fullscreen.setImage(self.fullscreenImage, for: UIControlState.normal)
+            self.fullscreen.setImage(self.fullscreenImage, for: UIControl.State.normal)
             self.playerDelegate?.playerStateChanged(to: .expanded)
         }
         
@@ -138,7 +138,7 @@ extension YTFViewController {
         ytfFullscreenViewController?.dismiss(animated: false, completion: fullScreenDismissCompletion)
     }
     
-    func panAction(recognizer: UIPanGestureRecognizer) {
+    @objc func panAction(recognizer: UIPanGestureRecognizer) {
         
         if (!isFullscreen) {
             let yPlayerLocation = recognizer.location(in: self.view?.window).y
@@ -319,7 +319,7 @@ extension YTFViewController {
                     
                     }, completion: { finished in
                         if (self.panGestureDirection == UIPanGestureRecognizerDirection.Down) {
-                            self.onView?.bringSubview(toFront: self.view)
+                            self.onView?.bringSubviewToFront(self.view)
                         }
                 })
                 
@@ -429,7 +429,7 @@ extension YTFViewController {
         })
     }
     
-    func expandViews() {
+    @objc func expandViews() {
         
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
             self.playerView.frame = self.playerViewFrame!

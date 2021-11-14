@@ -121,7 +121,7 @@ class YTFFullscreenViewController: UIViewController {
         setHideTimer()
     }
     
-    func showPlayerControls() {
+    @objc func showPlayerControls() {
         
         if (!isMinimized) {
             
@@ -132,14 +132,14 @@ class YTFFullscreenViewController: UIViewController {
             
             UIView.animate(withDuration: 0.6,
                            delay: 0,
-                           options: UIViewAnimationOptions.curveEaseOut,
+                           options: UIView.AnimationOptions.curveEaseOut,
                            animations: animatePlayerControls,
                            completion: nil)
             setHideTimer()
         }
     }
     
-    func hidePlayerControls(dontAnimate: Bool = false) {
+    @objc func hidePlayerControls(dontAnimate: Bool = false) {
         
         if (dontAnimate) {
             self.backPlayerControlsView.alpha = 0.0
@@ -154,7 +154,7 @@ class YTFFullscreenViewController: UIViewController {
                 
                 UIView.animate(withDuration: 0.6,
                                delay: 0,
-                               options: UIViewAnimationOptions.curveEaseIn,
+                               options: UIView.AnimationOptions.curveEaseIn,
                                animations: animatePlayerControls,
                                completion: nil)
             }

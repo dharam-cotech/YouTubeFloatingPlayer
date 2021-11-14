@@ -33,11 +33,11 @@ class YTFPopupCloseButton: UIButton {
         
         self.addSubview(effectView)
         let highlightEffectView: UIVisualEffectView = UIVisualEffectView.init(effect: UIVibrancyEffect(blurEffect: effectView.effect as! UIBlurEffect))
-        highlightEffectView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]
+        highlightEffectView.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth]
         highlightEffectView.frame = effectView.contentView.bounds
         let highlightView = UIView.init(frame: highlightEffectView.contentView.bounds)
         highlightView.backgroundColor = UIColor(white: 1.0, alpha: 0.2)
-        highlightView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]
+        highlightView.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth]
         highlightView.alpha = 0
         highlightEffectView.contentView.addSubview(highlightView)
         effectView.contentView.addSubview(highlightEffectView)
@@ -58,7 +58,7 @@ class YTFPopupCloseButton: UIButton {
         
         super.layoutSubviews()
         
-        self.sendSubview(toBack: effectView)
+        self.sendSubviewToBack(effectView)
         
         let minSideSize: CGFloat = min(self.bounds.size.width, self.bounds.size.height)
         

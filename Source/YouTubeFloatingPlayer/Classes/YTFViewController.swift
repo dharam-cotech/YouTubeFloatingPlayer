@@ -109,7 +109,7 @@ class YTFViewController: UIViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(deviceDidRotate),
-            name: .UIDeviceOrientationDidChange,
+            name: UIDevice.orientationDidChangeNotification,
             object: nil)
         
         initPlayerWithURLs()
@@ -128,7 +128,7 @@ class YTFViewController: UIViewController {
         }
     }
     
-    func deviceDidRotate() {
+    @objc func deviceDidRotate() {
         
         if !isExpanded {
             return
@@ -214,7 +214,7 @@ class YTFViewController: UIViewController {
         
         if let subview = subviewForDetailsView {
             detailsView.addSubview(subview)
-            detailsView.bringSubview(toFront: subview)
+            detailsView.bringSubviewToFront(subview)
         }
     }
     
